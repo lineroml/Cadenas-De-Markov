@@ -2,9 +2,40 @@ from tkinter import *
 
 #funciones de botones
 def acepta():
-    if kbut.get() is not "" and nbut.get() is not "":
+    if kbut.get() != "" and nbut.get() != "":
         k = int(kbut.get())
         n = int(nbut.get()) 
+        text = "text.txt"
+        f = open(text, encoding='utf8').read()
+        cad = f.split()
+        cadena = ""
+        for x in cad:
+            cadena = cadena+x  #creación de cadena sin espacios
+        letras = []
+        i = 0
+        longitud = len(cadena)
+        if k != 0:
+            for x in cadena:
+                if k+i <= longitud:
+                    subcad = cadena[i:k+i]
+                    i = i+1
+                else:
+                    break 
+                print(subcad)
+                if subcad not in letras:
+                    letras.append(subcad) # k tuplas distintas en array
+            print(letras)
+            prob = []
+            for x in letras:
+                cont = 0
+                for j in cadena:
+                    if j == x:
+                        cont = cont+1
+                prob.append(cont/longitud)
+            print(prob)
+        else:
+            # insertar caso de k=0
+            
 
 #config de pantalla
 window = Tk()
